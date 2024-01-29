@@ -28,7 +28,7 @@ public class AlmazholdingSiteTest {
     }
 
     @CsvFileSource(resources = "/test-data/menu_elements.csv")
-    @ParameterizedTest(name = "Проверка наличия в меню {0} наличия пункта мню {1}")
+    @ParameterizedTest(name = "Проверка наличия в главном меню {0} пункта меню {1}")
     @Tag("Regress")
     void menuShouldHaveMenuElement (String menuElement, String elementName) {
         $$(".menu__list li").find(text(menuElement)).hover();
