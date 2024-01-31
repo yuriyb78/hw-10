@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -68,7 +67,7 @@ public class AlmazholdingSiteTest {
                     .$$(".menu__row")
                     .get(1)
                     .$$(".menu__sublist li")
-                    .find(text("oneElementMenuType"));
+                    .find(text("oneElementMenuType")).shouldHave(visible);
         }
     }
 }
