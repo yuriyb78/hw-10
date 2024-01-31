@@ -56,10 +56,20 @@ public class AlmazholdingSiteTest {
     }
 
     @MethodSource("menuElementsForItems")
-    @ParameterizedTest(name = "Проверка наличия в меню {0} типа изделия {1}")
+    @ParameterizedTest(name = "Проверка наличия в меню типа изделия {1}")
     void menuShouldHaveMenuElementTypeItems(JewelryItem jewelryItem, List<String> elementMenuType) {
-        $$(".menu__list li").find(text(jewelryItem)).hover();
-        $$(".menu__list li").find(texts(elementMenuType)).shouldHave(visible);
+        String oneElementMenuType;
+        $$(".menu__list li").find(text(jewelryItem.jewelryItemType)).hover();
+        for (int i = 0; i < elementMenuType.size(); i++) {
+            oneElementMenuType = elementMenuType.get(i);
+            $$(".menu__list li")
+                    .get(1)
+                    .$(".menu__holder")
+                    .$$(".menu__row")
+                    .get(1)
+                    .$$(".menu__sublist li")
+                    .find(text("oneElementMenuType"));
+        }
     }
 }
 
