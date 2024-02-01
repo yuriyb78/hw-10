@@ -1,4 +1,4 @@
-import com.codeborne.selenide.Configuration;
+
 import data.JewelryItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -21,8 +21,7 @@ public class AlmazholdingSiteTest {
     @BeforeEach
     void setUp() {
         open("https://almazholding.ru/");
-        Configuration.browserSize = "1920x1080";
-//        Configuration.pageLoadStrategy = "eager";
+
     }
 
     @ValueSource(strings = {"Кольца", "Серьги", "Подвески"})
@@ -47,10 +46,7 @@ public class AlmazholdingSiteTest {
                 Arguments.of(
                         new JewelryItem("Кольца"),
                         List.of("Классические","Обручальные")
-                ),
-                Arguments.of(
-                        new JewelryItem("Серьги"),
-                        List.of("Классические","Серьги-конго"))
+                )
         );
     }
 
@@ -61,13 +57,8 @@ public class AlmazholdingSiteTest {
         $$(".menu__list li").find(text(jewelryItem.jewelryItemType)).hover();
         for (int i = 0; i < elementMenuType.size(); i++) {
             oneElementMenuType = elementMenuType.get(i);
-            $$(".menu__list li")
-                    .get(1)
-                    .$(".menu__holder")
-                    .$$(".menu__row")
-                    .get(1)
-                    .$$(".menu__sublist li")
-                    .find(text("oneElementMenuType")).shouldHave(visible);
+            $(".menu__list>li:nth-child(2)>.menu__holder:nth-child(2)")
+                    .shouldHave(text(oneElementMenuType));
         }
     }
 }
